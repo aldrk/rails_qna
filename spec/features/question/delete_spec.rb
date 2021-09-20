@@ -12,8 +12,12 @@ feature 'User can remove the question', "
 
   scenario 'author tries to destroy question' do
     sign_in(user)
-
+    expect(page).to have_content 'MyQuestionTitle'
+    expect(page).to have_content 'MyQuestionBody'
     click_on 'Delete'
+
+    expect(page).not_to have_content 'MyQuestionTitle'
+    expect(page).not_to have_content 'MyQuestionBody'
 
     expect(page).to have_content 'Question was destroyed'
   end
