@@ -1,0 +1,10 @@
+header
+  div class='wrapper'
+    div
+      h1
+        = link_to 'QnA', root_path
+    div class='profile'
+      - if user_signed_in?
+        p Hi,
+        b = current_user.email
+        = link_to 'Log out', destroy_user_session_path, method: :delete

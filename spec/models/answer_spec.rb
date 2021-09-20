@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
-  it { should belong_to :question}
+  it { is_expected.to belong_to :question }
+  it { is_expected.to belong_to :author }
 
-  it { should validate_presence_of :title }
-  it { should validate_presence_of :body }
+  it { is_expected.to validate_presence_of :title }
+  it { is_expected.to validate_presence_of :body }
 end
