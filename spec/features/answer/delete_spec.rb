@@ -14,9 +14,13 @@ feature 'User can remove the answer', "
   scenario 'author tries to destroy answer' do
     sign_in(user)
     visit question_path(question)
+    expect(page).to have_content 'MyAnswerTitle'
+    expect(page).to have_content 'MyAnswerTitle'
 
     click_on 'Delete'
 
+    expect(page).to_not have_content 'MyAnswerTitle'
+    expect(page).to_not have_content 'MyAnswerTitle'
     expect(page).to have_content 'Answer successfully deleted'
   end
 

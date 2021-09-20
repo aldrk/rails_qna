@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :answer do
-    title { 'MyTitle' }
-    body { 'MyBody' }
+    title { 'MyAnswerTitle' }
+    body { 'MyAnswerBody' }
     association :author, factory: :user
     question
 
