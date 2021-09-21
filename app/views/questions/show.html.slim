@@ -1,8 +1,7 @@
 = render 'shared/errors', resource: @question
 = render 'shared/errors', resource: @answer
 
-h1= @question.title
-p= @question.body
+= render @question
 div
   h3 Answers 
   = render @question.answers
