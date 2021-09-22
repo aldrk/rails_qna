@@ -3,10 +3,11 @@ feature 'User can open the question', "
   As an unauthenticated user
   I'd like to be able open the question
 " do
-  let!(:answer) { create(:answer) }
+  given!(:answer) { create(:answer) }
 
   scenario 'user open questions list' do
-    visit question_path(answer.question)
+    visit root_path
+    click_on 'Open answers'
 
     expect(page).to have_content answer.title
     expect(page).to have_content answer.body

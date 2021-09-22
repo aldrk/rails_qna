@@ -1,0 +1,8 @@
+$('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>')
+$('.notice').html('<%= notice %>')
+$('.alert').html('<%= alert %>')
+<% if @answer.persisted? %>
+  $('.answers').append('<%= j render @answer %>')
+  $('form').last().find('#answer_title').val('')
+  $('form').last().find('#answer_body').val('')
+<% end %>

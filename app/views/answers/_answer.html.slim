@@ -1,7 +1,18 @@
 - if answer.persisted?
-  div
+  div.answer id="answer-#{answer.id}" class==(answer.best? ? 'best-answer' : '')
+    - if answer.best
+      p= 'Best answer'
     p= answer.title
     p= answer.body
-    - unless current_user.nil?
-      - if current_user.author?(answer)
-        = link_to 'Delete', answer_path(answer), method: :delete
+    - unless answer.best
+      - if user_signed_in? && current_user.author?(answer.question)
+        = link_to 'Choose as best', nominate_answer_path(answer), remote: true, method: :patch, class: 'best-answer-link'
+    - if user_signed_in? && current_user.author?(answer)
+      = link_to 'Delete', answer_path(answer), remote: true, method: :delete
+      = link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: answer.id }
+      = form_with model: answer, local: false, class: 'hidden', html: { id: "edit-answer-#{answer.id}" } do |f|
+        = f.label :title
+        = f.text_area :title
+        = f.label :body
+        = f.text_area :body
+        = f.submit 'Save'

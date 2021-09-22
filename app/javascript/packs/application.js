@@ -5,8 +5,13 @@
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
+import $ from 'jquery'
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import './utils/main.js'
+
+global.$ = $
+global.jQuery = $
 
 Rails.start()
 Turbolinks.start()

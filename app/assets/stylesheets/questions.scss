@@ -1,3 +1,70 @@
 // Place all the styles related to the Questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+a {
+  text-decoration: none;
+
+  &:visited {
+    color: inherit;
+  }
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+
+  .profile {
+    display: grid;
+    grid-template-columns: 24px 1fr 200px 200px;
+  }
+
+  a {
+    width: 100px;
+    height: 24px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid black;
+  }
+}
+
+body {
+  padding: 8px;
+}
+
+.ask_question {
+  font-size: 18px;
+  font-weight: 700;
+
+  &:hover {
+    border-bottom: 1px solid black;
+  }
+}
+
+.questions {
+  a {
+    margin-right: 8px;
+  }
+}
+
+form {
+  margin-top: 16px;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  width: 400px;
+  align-items: center;
+
+  input[type="submit"] {
+    background-color: snow;
+    width: 100px;
+    height: 24px;
+    margin-top: 16px;
+    border: none;
+    cursor: pointer;
+  }
+}

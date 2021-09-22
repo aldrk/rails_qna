@@ -5,6 +5,8 @@ header
         = link_to 'QnA', root_path
     div class='profile'
       - if user_signed_in?
-        p Hi,
+        span Hi,
         b = current_user.email
         = link_to 'Log out', destroy_user_session_path, method: :delete
+      - else
+      = link_to 'Login', new_user_session_path

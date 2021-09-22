@@ -4,4 +4,18 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   validates :title, :body, presence: true
+
+  def best_answer
+    answers.find_by_best(true)
+  end
+
+  def new_best_answer(answer)
+    transaction do
+      if best_answer
+        best_answer.update!(best: false)
+      end
+
+      answer.update!(best: true)
+    end
+  end
 end

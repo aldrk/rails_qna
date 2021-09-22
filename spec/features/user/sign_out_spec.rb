@@ -19,6 +19,6 @@ feature 'User can sign out', "
   scenario 'logged out user tries to log out' do
     visit root_path
 
-    expect(page).to_not have_content 'Log out'
+    expect(page).not_to have_content 'Log out'
   end
 end

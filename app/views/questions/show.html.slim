@@ -1,11 +1,12 @@
-= render 'shared/errors', resource: @question
-= render 'shared/errors', resource: @answer
-
-= render @question
+h1= @question.title
+p= @question.body
 div
-  h3 Answers 
-  = render @question.answers
-  = form_with model: [@question, @answer] do |f|
+  h3 Answers
+  .answers
+    = render @question.answers
+  .answer-errors
+    = render 'shared/errors', resource: @answer
+  = form_with model: [@question, @answer], local: false, format: :js do |f|
     = f.label :title
     = f.text_field :title
     = f.label :body

@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+    @question = Question.new
   end
 
   def new
@@ -20,17 +21,22 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to @question, notice: 'Your question successfully created.'
     else
-      render :new
+      render :create
     end
   end
 
   def destroy
     if current_user.author?(@question)
       @question.destroy
-      redirect_to root_path, notice: 'Question was destroyed'
+      flash[:notice] = 'Question was destroyed'
     else
-      redirect_to root_path, alert: 'You can`t do that'
+      flash[:alert] = 'You are not a author!'
     end
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    @question.update(question_params)
   end
 
   private

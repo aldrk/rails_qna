@@ -1,2 +1,5 @@
-p= link_to 'Ask question', new_question_path
-= render @questions
+p= link_to 'Ask question', new_question_path, class: 'ask_question'
+.question-errors
+  = render 'shared/errors', resource: @question
+.questions
+  = render @questions

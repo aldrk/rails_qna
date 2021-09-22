@@ -1,0 +1,7 @@
+$('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>')
+$('.notice').html('<%= notice %>')
+$('.alert').html('<%= alert %>')
+<% unless @answer.errors.present? %>
+  $('.answers').html('<%= j render @question.answers %>')
+  $('.answer').first().before($(".best-answer"))
+<% end %>
