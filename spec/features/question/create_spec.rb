@@ -27,6 +27,17 @@ feature 'User can create question', "
       click_on 'Ask'
       expect(page).to have_content "Title can't be blank"
     end
+
+    scenario 'asks a question with attached files', js: true do
+      fill_in 'Title', with: 'MyTitle'
+      fill_in 'Body', with: 'MyBody'
+
+      attach_file 'File', %W[#{Rails.root}/spec/rails_helper.rb #{Rails.root}/spec/spec_helper.rb]
+      click_on 'Ask'
+
+      expect(page).to have_link 'rails_helper.rb'
+      expect(page).to have_link 'spec_helper.rb'
+    end
   end
 
   scenario 'unauthenticated user tries to ask a question' do

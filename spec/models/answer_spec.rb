@@ -7,6 +7,10 @@ RSpec.describe Answer, type: :model do
   it { is_expected.to validate_presence_of :title }
   it { is_expected.to validate_presence_of :body }
 
+  it 'has one attached files' do
+    expect(Answer.new.files).to be_an_instance_of(ActiveStorage::Attached::Many)
+  end
+
   describe '#new_best_answer' do
     let(:question) { create(:question) }
     let(:answer) { create(:answer, question: question) }

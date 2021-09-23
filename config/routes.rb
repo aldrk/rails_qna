@@ -10,6 +10,14 @@ Rails.application.routes.draw do
       member do
         patch :nominate
       end
+
+      resources :files, shallow: true, only: %i[] do
+        delete :answer_destroy
+      end
     end
+  end
+
+  resources :files, shallow: true, only: %i[] do
+    delete :question_destroy
   end
 end

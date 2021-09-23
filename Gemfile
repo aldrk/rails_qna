@@ -15,6 +15,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim-rails'
 gem 'devise'
 gem 'jquery-rails'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
