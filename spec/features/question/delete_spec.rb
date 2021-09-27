@@ -10,7 +10,7 @@ feature 'User can remove the question', "
     visit root_path
   end
 
-  scenario 'author tries to destroy question', js: true do
+  scenario 'author tries to destroy question', :js do
     sign_in(user)
     expect(page).to have_content 'MyQuestionTitle'
     expect(page).to have_content 'MyQuestionBody'

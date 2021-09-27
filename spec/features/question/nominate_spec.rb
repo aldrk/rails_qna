@@ -11,7 +11,7 @@ feature 'User can choose the best answer', "
       sign_in(user)
     end
 
-    scenario 'choose the best answer of his question', js: true do
+    scenario 'chooses the best answer of his question', :js do
       create(:answer, question: question)
       visit question_path(question)
       click_on 'Choose as best'
@@ -20,7 +20,7 @@ feature 'User can choose the best answer', "
       expect(page).to have_content 'Best answer'
     end
 
-    scenario 'choose other answer of his question', js: true do
+    scenario 'chooses other answer of his question', :js do
       create(:answer, question: question, best: true)
       create(:answer, question: question, body: 'second answer')
       visit question_path(question)
@@ -38,7 +38,7 @@ feature 'User can choose the best answer', "
       end
     end
 
-    scenario 'choose a best answer of another question' do
+    scenario 'chooses a best answer of another question' do
       visit question_path(create(:question))
 
       expect(page).not_to have_content 'Choose as best'
@@ -46,7 +46,7 @@ feature 'User can choose the best answer', "
   end
 
   describe 'when unauthenticated user' do
-    scenario "choose a best answer" do
+    scenario 'chooses a best answer' do
       create(:answer)
       visit question_path(create(:question))
 

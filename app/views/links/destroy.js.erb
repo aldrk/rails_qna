@@ -1,0 +1,6 @@
+$('.answer-errors').html('<%= render 'shared/errors', resource: @link %>')
+$('.notice').html('<%= notice %>')
+$('.alert').html('<%= alert %>')
+<% unless @link.errors.present? %>
+  $("#link-<%= @link.id %>").remove()
+<% end %>

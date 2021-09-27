@@ -13,5 +13,9 @@ FactoryBot.define do
     trait :invalid do
       title { nil }
     end
+
+    trait :with_achievement do
+      achievement
+    end
   end
 end

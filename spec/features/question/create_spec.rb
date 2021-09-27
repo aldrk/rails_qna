@@ -13,7 +13,7 @@ feature 'User can create question', "
       click_on 'Ask question'
     end
 
-    scenario 'asks a question', js: true do
+    scenario 'asks a question', :js do
       fill_in 'Title', with: 'MyQuestionTitle'
       fill_in 'Body', with: 'MyQuestionBody'
       click_on 'Ask'
@@ -23,12 +23,12 @@ feature 'User can create question', "
       expect(page).to have_content 'MyQuestionBody'
     end
 
-    scenario 'asks a question with errors', js: true do
+    scenario 'asks a question with errors', :js do
       click_on 'Ask'
       expect(page).to have_content "Title can't be blank"
     end
 
-    scenario 'asks a question with attached files', js: true do
+    scenario 'asks a question with attached files', :js do
       fill_in 'Title', with: 'MyTitle'
       fill_in 'Body', with: 'MyBody'
 

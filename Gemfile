@@ -16,6 +16,8 @@ gem 'slim-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem "aws-sdk-s3", require: false
+gem "octokit", "~> 4.0"
+gem 'cocoon'
 
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'

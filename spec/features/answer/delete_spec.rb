@@ -11,7 +11,7 @@ feature 'User can remove the answer', "
     visit question_path(question)
   end
 
-  scenario 'author tries to destroy answer' do
+  scenario 'author tries to destroy answer', :js do
     sign_in(user)
     visit question_path(question)
     expect(page).to have_content 'MyAnswerTitle'

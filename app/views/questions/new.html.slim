@@ -8,4 +8,19 @@
   = f.text_area :body
   = f.label :files
   = f.file_field :files, multiple: true
+  p Links:
+  p
+    = f.fields_for :links do |link|
+      = render 'links/link_fields', f: link
+    .links
+      = link_to_add_association 'add link', f, :links, { partial: 'links/link_fields' }
+  .achievement_form
+    h4 Achievement
+    = f.fields_for :achievement do |r|
+      div
+        = r.label :description
+        = r.text_field :description
+      div
+        = r.label :image
+        = r.file_field :image
   = f.submit 'Ask' 

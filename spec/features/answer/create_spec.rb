@@ -7,7 +7,7 @@ feature 'User can answer the question', "
   given(:user) { create(:user) }
   given(:question) { create(:question, author: user) }
 
-  describe 'Authenticated user', js: true do
+  describe 'Authenticated user', :js do
     background do
       sign_in(user)
 

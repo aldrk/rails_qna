@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   resources :files, shallow: true, only: %i[] do
     delete :question_destroy
   end
+
+  resources :achievements, only: %i[index]
+  resources :links, only: %i[destroy]
 end

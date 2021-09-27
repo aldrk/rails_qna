@@ -1,0 +1,15 @@
+- gist_service = GistService.new
+.link id="link-#{link.id}"
+  - if gist_service.gist?(link.url)
+    li Gist:
+      ul
+        - gist = gist_service.gist(link.url)
+        li= gist.description
+        - gist.files.map do |file_name, file_body|
+          li = file_name
+          li = file_body.content
+  - else
+    li= link_to link.name, link.url
+
+  - if user_signed_in? && current_user.author?(link.linkable)
+    = link_to 'Delete link', link_path(link), remote: true, method: :delete

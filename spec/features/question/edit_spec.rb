@@ -15,7 +15,7 @@ feature 'User can change the question', "
   end
 
   describe 'Authenticated user' do
-    scenario 'edits his question', js: true do
+    scenario 'edits his question', :js do
       sign_in(user)
       visit root_path
 
@@ -31,7 +31,7 @@ feature 'User can change the question', "
       end
     end
 
-    scenario 'edits question with attached files', js: true do
+    scenario 'edits question with attached files', :js do
       sign_in(user)
       visit root_path
 
@@ -46,7 +46,7 @@ feature 'User can change the question', "
       end
     end
 
-    scenario 'remove attached file', js: true do
+    scenario 'remove attached file', :js do
       sign_in(user)
       visit root_path
 
@@ -64,7 +64,7 @@ feature 'User can change the question', "
       end
     end
 
-    scenario 'edits his question with errors', js: true do
+    scenario 'edits his question with errors', :js do
       sign_in(user)
       visit root_path
 

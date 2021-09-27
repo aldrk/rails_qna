@@ -1,6 +1,7 @@
 RSpec.describe User, type: :model do
   it { is_expected.to have_many(:created_answers).dependent(:destroy) }
   it { is_expected.to have_many(:created_questions).dependent(:destroy) }
+  it { is_expected.to have_many(:achievements).dependent(:destroy) }
 
   describe '#author?' do
     subject(:user) { create(:user) }
