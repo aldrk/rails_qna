@@ -1,4 +1,3 @@
-
 feature 'User can answer the question', "
   In order to help some other user
   As an authenticated user

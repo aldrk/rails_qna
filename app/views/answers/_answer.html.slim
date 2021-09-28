@@ -16,6 +16,7 @@
     - unless answer.best
       - if user_signed_in? && current_user.author?(answer.question)
         = link_to 'Choose as best', nominate_answer_path(answer), remote: true, method: :patch, class: 'best-answer-link'
+    = render 'shared/votes', resource: answer
     - if user_signed_in? && current_user.author?(answer)
       = link_to 'Delete', answer_path(answer), remote: true, method: :delete
       = link_to 'Edit', '#', class: 'edit-answer-link', data: { answer_id: answer.id }

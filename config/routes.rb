@@ -9,11 +9,18 @@ Rails.application.routes.draw do
     resources :answers, shallow: true, only: %i[create show destroy update] do
       member do
         patch :nominate
+        put :vote, votable_type: 'Answer'
+        delete :cancel_vote, votable_type: 'Answer'
       end
 
       resources :files, shallow: true, only: %i[] do
         delete :answer_destroy
       end
+    end
+
+    member do
+      put :vote, votable_type: 'Question'
+      delete :cancel_vote, votable_type: 'Question'
     end
   end
 

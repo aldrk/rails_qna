@@ -10,8 +10,6 @@ feature 'Authenticated user can delete questions links', "
     sign_in(user)
     visit question_path(question)
 
-    save_and_open_page
-
     expect(page).to have_link link.name, href: link.url
 
     click_on 'Delete link'
