@@ -4,7 +4,7 @@ class Achievement < ApplicationRecord
   belongs_to :question
   belongs_to :user, optional: true
 
-  def achieve(user)
+  def achieve!(user)
     update!(user: user)
   end
 end
