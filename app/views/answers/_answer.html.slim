@@ -34,3 +34,11 @@
           .links
             = link_to_add_association 'Add link', f, :links, { partial: 'links/link_fields' }
         = f.submit 'Save'
+    .comments
+      h5 Comments:
+      = render answer.comments
+      .new-comment
+        = form_with model: [answer, answer.comments.build], local: false, format: :js do |f|
+          = f.label :body, 'Comment:'
+          = f.text_area :body
+          = f.submit 'Comment'

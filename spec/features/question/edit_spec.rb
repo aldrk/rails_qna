@@ -22,12 +22,13 @@ feature 'User can change the question', "
       click_on 'Edit'
 
       within '.questions' do
+        expect(page).to have_selector '#question_title'
         fill_in 'Body', with: 'edited question'
         click_on 'Save'
 
         expect(page).not_to have_content question.body
         expect(page).to have_content 'edited question'
-        expect(page).not_to have_selector 'textarea'
+        expect(page).not_to have_selector '#question_title'
       end
     end
 
@@ -75,7 +76,7 @@ feature 'User can change the question', "
         click_on 'Save'
 
         expect(page).to have_content question.body
-        expect(page).to have_selector 'textarea'
+        expect(page).to have_selector '#question_title'
       end
 
       within '.question-errors' do

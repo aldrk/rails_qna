@@ -4,6 +4,8 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_answer, only: [:destroy, :update, :nominate]
 
+  after_action :publish_answer, only: [:create]
+
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.build(answer_params)
@@ -44,5 +46,18 @@ class AnswersController < ApplicationController
 
   def find_answer
     @answer = Answer.with_attached_files.find(params[:id])
+  end
+
+  def publish_answer
+    return if @answer.errors.any?
+
+    ActionCable.server.broadcast(
+      'answers',
+      {
+        answer: @answer,
+        current_user: current_user,
+        create_comment_token: form_authenticity_token
+      }.to_json
+    )
   end
 end

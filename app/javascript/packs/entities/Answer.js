@@ -80,6 +80,60 @@ class Answer{
             .on('ajax:success', event => { this.voteCancelEvent(event) })
             .on('ajax:error', event => { this.voteErrorEvent(event) })
     }
+
+    static jsonRender(data){
+        const locals = JSON.parse(data)
+
+        const answer = $('<div></div>').toggleClass('answer').attr('id', `answer-${locals.answer.id}`)
+        const voteCounter = $('<h3>0</h3>').toggleClass('vote-counter')
+        const votes = $('<div></div>').toggleClass('votes').append(voteCounter)
+        const comments = $('<div></div>').toggleClass('comments').append('<h5>Comments: </h5>')
+        const newComment = $('<div></div>').toggleClass('new-comment')
+        newComment.append(this.newComment(locals))
+
+        answer
+            .append(`<p>${locals.answer.title}</p>`)
+            .append(`<p>${locals.answer.body}</p>`)
+            .append(votes)
+            .append(comments)
+            .append(newComment)
+
+        return answer
+    }
+
+    static newComment(locals){
+        const form = $('<form></form>')
+        const token = $('<input></input>')
+
+        form.attr({
+            action: `/answers/${locals.answer.id}/comments.js`,
+            'accept-charset': 'UTF-8',
+            'data-remote': true,
+            method: 'post'
+        })
+
+        token.attr({
+            type: 'hide',
+            name: 'authenticity_token',
+            value: locals.create_comment_token
+        }).hide()
+
+        form
+            .append(token)
+            .append($('<label for="comment_body">Comment:</label>'))
+            .append($('<textarea></textarea>').attr({
+                name: 'comment[body]',
+                id: 'comment_body'
+            }))
+            .append($('<input></input>').attr({
+                type: 'submit',
+                name: 'commit',
+                value: 'Comment',
+                'data-disable-with': 'Comment'
+            }))
+
+        return form
+    }
 }
 
 export default Answer

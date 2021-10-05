@@ -21,12 +21,13 @@ feature 'User can change the answer', "
       click_on 'Edit'
 
       within '.answers' do
+        expect(page).to have_selector '#answer_title'
         fill_in 'Body', with: 'edited answer'
         click_on 'Save'
 
         expect(page).not_to have_content answer.body
         expect(page).to have_content 'edited answer'
-        expect(page).not_to have_selector 'textarea'
+        expect(page).not_to have_selector '#answer_title'
       end
     end
 
