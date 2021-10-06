@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
 
   after_action :publish_comment, only: [:create]
 
+  authorize_resource
+
   def create
     @commentable = params[:commentable_type].constantize.find(params[commentable_id])
     @comment = @commentable.comments.build(comment_params)
@@ -11,11 +13,12 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = 'Your comment successfully posted.'
     end
+  end
 
   def destroy
     @comment = Comment.find(params[:id])
 
-    if current_user.author?(@comment)
+    if can?(:destroy, @comment)
       @comment.destroy
       flash[:notice] = 'Comment successfully deleted'
     else

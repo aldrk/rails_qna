@@ -2,7 +2,7 @@
   h3.vote-counter
     = resource.total_votes
 
-  - if user_signed_in? && !current_user.author?(resource)
+  - if can?(:vote, resource)
     - resource_name = resource.class.name.downcase
 
     - if resource.vote_from current_user

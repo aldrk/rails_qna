@@ -11,5 +11,5 @@
   - else
     li= link_to link.name, link.url
 
-  - if user_signed_in? && current_user.author?(link.linkable)
+  - if can?(:manage, link.linkable)
     = link_to 'Delete link', link_path(link), remote: true, method: :delete

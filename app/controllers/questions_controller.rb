@@ -6,6 +6,8 @@ class QuestionsController < ApplicationController
 
   after_action :publish_question, only: [:create]
 
+  authorize_resource
+
   def index
     @questions = Question.all
     @question = Question.new
@@ -33,7 +35,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    if current_user.author?(@question)
+    if can?(:manage, @question)
       @question.destroy
       flash[:notice] = 'Question was destroyed'
     else

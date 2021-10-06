@@ -2,5 +2,5 @@
   .comment id="comment-#{comment.id}"
     p= "Author: #{comment.author.email}"
     p= "Text: #{comment.body}"
-    - if user_signed_in? && current_user.author?(comment)
+    - if can?(:destroy, comment)
       = link_to 'Delete', comment_path(comment), remote: true, method: :delete

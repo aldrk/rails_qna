@@ -19,6 +19,7 @@ gem "aws-sdk-s3", require: false
 gem "octokit", "~> 4.0"
 gem 'cocoon'
 gem 'with_model'
+gem 'cancancan'
 
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'

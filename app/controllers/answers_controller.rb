@@ -6,6 +6,8 @@ class AnswersController < ApplicationController
 
   after_action :publish_answer, only: [:create]
 
+  authorize_resource
+
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.build(answer_params)
@@ -21,7 +23,7 @@ class AnswersController < ApplicationController
   def destroy
     @answer = Answer.find(params[:id])
 
-    if current_user.author?(@answer)
+    if can?(:manage, @answer)
       @answer.destroy
       redirect_to question_path(@answer.question), notice: 'Answer successfully deleted'
     else
@@ -34,6 +36,8 @@ class AnswersController < ApplicationController
   end
 
   def nominate
+    authorize! :nominate, @answer
+
     @question = @answer.question
     @answer.choose_best_answer
   end
