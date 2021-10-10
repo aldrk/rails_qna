@@ -8,6 +8,8 @@ class Ability
     @user = user
 
     if user.persisted?
+      return admin_abilities if user.admin?
+
       user_abilities
     else
       guest_abilities
@@ -29,5 +31,11 @@ class Ability
     can :nominate, Answer, question: { author_id: user.id }
 
     cannot :vote, [Question, Answer], author_id: user.id
+  end
+
+  def admin_abilities
+    user_abilities
+
+    can :manage, :all
   end
 end

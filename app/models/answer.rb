@@ -23,4 +23,10 @@ class Answer < ApplicationRecord
       update!(best: true)
     end
   end
+
+  def files_url
+    files.map do |file|
+      file.url
+    end
+  end
 end
