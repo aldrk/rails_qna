@@ -28,6 +28,8 @@ class QuestionsController < ApplicationController
     @question = current_user.created_questions.build(question_params)
 
     if @question.save
+      @question.question_subscription.create(user: current_user)
+
       redirect_to @question, notice: 'Your question successfully created.'
     else
       render :create

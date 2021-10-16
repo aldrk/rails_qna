@@ -35,6 +35,8 @@ RSpec.describe Ability, type: :model do
     it { should_not be_able_to :nominate, create(:answer, question: create(:question, author: other)), author: user }
     it { should_not be_able_to :vote, create(:vote, author: user), author: user }
     it { should_not be_able_to :vote, create(:vote, author: user), author: user }
+    it { should be_able_to :subscribe, QuestionSubscription }
+    it { should be_able_to :unsubscribe, QuestionSubscription }
   end
 
   describe 'for admin' do

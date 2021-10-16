@@ -12,6 +12,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'doorkeeper'
 gem 'active_model_serializers', '~> 0.10'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'whenever', require: false
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim-rails'

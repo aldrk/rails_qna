@@ -1,0 +1,4 @@
+' DailyDigest#digest
+= "\r\n"
+- @questions.find_each(batch_size: 500) do |question|
+  = question.title
