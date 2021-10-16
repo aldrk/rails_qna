@@ -9,6 +9,11 @@
           p= link_to 'Remove', file_question_destroy_path(file.id), remote: true, method: :delete
     = link_to 'Open answers', question_path(question)
     = render 'shared/votes', resource: question
+    - if can?(:manage, question.question_subscription.build)
+      - if QuestionSubscription.where(question: question, user: current_user).first
+        = link_to 'Unsubscribe', unsubscribe_question_subscriptions_path(question_id: question.id), method: :delete
+      - else
+        = link_to 'Subscribe', subscribe_question_subscriptions_path(question_id: question.id), method: :post
     - if can?(:manage, question)
       = link_to 'Delete', question_path(question), remote: true, method: :delete
       = link_to 'Edit', '#', class: 'edit-question-link', data: { question_id: question.id }

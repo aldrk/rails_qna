@@ -14,6 +14,7 @@ class AnswersController < ApplicationController
     @answer.author = current_user
 
     if @answer.save
+      QuestionSubscriptionJob.perform_now(@question)
       flash[:notice] = 'Your answer successfully posted.'
     else
       flash[:alert] = 'You need to sign in or sign up before continuing.'

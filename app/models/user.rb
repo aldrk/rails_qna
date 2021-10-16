@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :question_subscription
+  has_many :subscribed_questions, through: :question_subscription, source: :question, dependent: :destroy
   has_many :created_answers, foreign_key: 'author_id', class_name: 'Answer', dependent: :destroy
   has_many :created_questions, foreign_key: 'author_id', class_name: 'Question', dependent: :destroy
   has_many :achievements, dependent: :destroy

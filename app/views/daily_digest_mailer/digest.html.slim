@@ -1,0 +1,4 @@
+h1 DailyDigest#digest
+ul
+  - @questions.find_each(batch_size: 500) do |question|
+    li= question.title
